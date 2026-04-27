@@ -3,6 +3,7 @@
 
 A = {'x1':0.2,'x2':0.5,'x3':0.8}
 B = {'x1':0.6,'x2':0.3,'x3':0.4}
+C = {'y1': 0.7, 'y2': 0.4, 'y3': 0.9}
 
 def fuzzy_union(A,B):
     result={}
@@ -49,4 +50,19 @@ def max_min_composition(R1,R2,X,Y,Z):
 
 print('Union :',fuzzy_union(A,B))
 print('Intersection :',fuzzy_intersection(A,B))
-print('Complement of A :')
+print('Complement of A :',fuzzy_complement(A))
+print('Difference : ',fuzzy_difference(A,B))
+
+R1 = cartesian_product(A,B)
+print('Fuzzy Relation (A x B ) :',R1)
+
+R2 = cartesian_product(B,C)
+print('Fuzzy Relation (B x C) :',R2)
+
+X=A.keys()
+Y=B.keys()
+Z=C.keys()
+composition = max_min_composition(R1,R2,X,Y,Z)
+
+print('Max-Min Compostion :')
+print(composition)
