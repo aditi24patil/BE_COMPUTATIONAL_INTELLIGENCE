@@ -39,7 +39,10 @@ for gen in range(gens):
         toolbox.mutate(ind)
         
     population = offspring
-    
+
+for ind in population:
+    ind.fitness.values = toolbox.evaluate(ind)
+
 best=tools.selBest(population,1)[0]
 print('\nBest Solution :',best)
 print('Best Fitness :',best.fitness.values)
