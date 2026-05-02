@@ -37,9 +37,6 @@ for gen in range(gens):
     mutated=mutation(clones)
     population = selected + mutated[:pop_size - len(selected)]
 
-for ind in population:
-    ind.fitness.values = toolbox.evaluate(ind)
-
 best=max(population,key=fitness)
 print('\nBest Solution :',best)
 print('Best Fitness :',fitness(best))
