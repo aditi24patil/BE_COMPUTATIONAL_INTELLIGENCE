@@ -1,6 +1,5 @@
-#A salesman needs to visit a set of cities exactly once and return to the original city. 
+# A salesman needs to visit a set of cities exactly once and return to the original city. 
 #The task is to find the shortest possible route that the salesman can take to visit all the cities and return to the starting city.
-
 import numpy as np
 import random
 
@@ -87,8 +86,16 @@ for iteration in range(num_iterations):
 
     for path, length in zip(all_paths, all_lengths):
         for i in range(len(path) - 1):
-            pheromone[path[i]][path[i+1]] += Q / length
-        pheromone[path[-1]][path[0]] += Q / length
+            a = path[i]
+            b = path[i+1]
+            pheromone[a][b] += Q / length
+            pheromone[b][a] += Q / length   # ✅ FIX: update reverse direction
+        
+        # return to start
+        a = path[-1]
+        b = path[0]
+        pheromone[a][b] += Q / length
+        pheromone[b][a] += Q / length   # ✅ FIX: update reverse direction
 
 # Step 5: Output Best Route
 
